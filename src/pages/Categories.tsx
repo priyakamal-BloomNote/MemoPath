@@ -4,7 +4,7 @@ import { useAuth } from '@/lib/auth';
 import { useToast } from '@/lib/toast';
 import { Button, EmptyState, Input, Label, Modal, DarkPageBanner, DarkCard, Badge } from '@/components/ui';
 import DecisionDetailModal from '@/components/DecisionDetailModal';
-import type { Category, Decision } from '@/lib/types';
+import { DEFAULT_CATEGORIES, type Category, type Decision } from '@/lib/types';
 import { Plus, Tag, Trash2, Pencil, Brain, ArrowRight, ImagePlus, X, Upload, Link2, Images, Loader2 } from 'lucide-react';
 
 const COLORS = ['#5f885c', '#3b82f6', '#d97706', '#e11d48', '#7c4dc4', '#10b981', '#f59e0b', '#06b6d4', '#ef4444', '#8b5cf6'];
@@ -217,8 +217,32 @@ export default function Categories() {
       supabase.from('categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true }),
       supabase.from('decisions').select('category').eq('user_id', user.id),
     ]);
-    if (catError) toast('Could not load categories', 'error');
-    setItems((catData || []) as Category[]);
+    if (catError) {
+      toast('Could not load categories', 'error');
+    }
+
+    let loadedCategories = (catData || []) as Category[];
+    if (!catError) {
+      const existingNames = new Set(loadedCategories.map((category) => category.name));
+      const missingCategories = DEFAULT_CATEGORIES.filter((category) => !existingNames.has(category.name));
+      if (missingCategories.length > 0) {
+        const { error: seedError } = await supabase.from('categories').insert(
+          missingCategories.map((category) => ({ user_id: user.id, name: category.name, color: category.color, icon: category.icon })),
+        );
+        if (seedError) {
+          toast('Could not add standard categories', 'error');
+        } else {
+          const { data: refreshedCategories, error: refreshError } = await supabase
+            .from('categories')
+            .select('*')
+            .eq('user_id', user.id)
+            .order('created_at', { ascending: true });
+          if (!refreshError) loadedCategories = (refreshedCategories || []) as Category[];
+        }
+      }
+    }
+
+    setItems(loadedCategories);
     const counts: Record<string, number> = {};
     (decData || []).forEach((d) => { counts[d.category] = (counts[d.category] || 0) + 1; });
     setDecisionCounts(counts);
