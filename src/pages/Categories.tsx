@@ -17,7 +17,13 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.pexels.com/photos/36733304/pexels-photo-36733304.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/6533059/pexels-photo-6533059.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
-  Health: [],
+  Health: [
+    'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3768919/pexels-photo-3768919.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8411306/pexels-photo-8411306.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
   Finance: [
     'https://images.pexels.com/photos/5900184/pexels-photo-5900184.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/5900156/pexels-photo-5900156.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -46,6 +52,48 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.pexels.com/photos/36730145/pexels-photo-36730145.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/7113592/pexels-photo-7113592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
+  'Travel & Adventure': [
+    'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1058959/pexels-photo-1058959.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  'Hobbies & Creativity': [
+    'https://images.pexels.com/photos/1190130/pexels-photo-1190130.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1190131/pexels-photo-1190131.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5900165/pexels-photo-5900165.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6957803/pexels-photo-6957803.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Family: [
+    'https://images.pexels.com/photos/1648387/pexels-photo-1648387.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1648431/pexels-photo-1648431.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1648388/pexels-photo-1648388.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2698945/pexels-photo-2698945.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1648438/pexels-photo-1648438.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Spirituality: [
+    'https://images.pexels.com/photos/8474872/pexels-photo-8474872.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8474877/pexels-photo-8474877.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2901486/pexels-photo-2901486.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8474866/pexels-photo-8474866.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Technology: [
+    'https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/7988080/pexels-photo-7988080.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/356054/pexels-photo-356054.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2693244/pexels-photo-2693244.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Lifestyle: [
+    'https://images.pexels.com/photos/3755586/pexels-photo-3755586.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3755587/pexels-photo-3755587.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3755579/pexels-photo-3755579.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3755580/pexels-photo-3755580.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3755582/pexels-photo-3755582.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
 };
 
 function getImagesForCategory(name: string, customImages?: string[] | null): string[] {
@@ -58,6 +106,12 @@ function getImagesForCategory(name: string, customImages?: string[] | null): str
   if (lower.includes('education') || lower.includes('learn') || lower.includes('study')) return CATEGORY_IMAGES.Education;
   if (lower.includes('relation') || lower.includes('family') || lower.includes('friend')) return CATEGORY_IMAGES.Relationships;
   if (lower.includes('growth') || lower.includes('mind') || lower.includes('spirit')) return CATEGORY_IMAGES['Personal Growth'];
+  if (lower.includes('travel') || lower.includes('adventure') || lower.includes('trip')) return CATEGORY_IMAGES['Travel & Adventure'];
+  if (lower.includes('hobby') || lower.includes('creativ') || lower.includes('art') || lower.includes('music')) return CATEGORY_IMAGES['Hobbies & Creativity'];
+  if (lower.includes('family') || lower.includes('home') || lower.includes('kid')) return CATEGORY_IMAGES['Family'];
+  if (lower.includes('spirit') || lower.includes('meditat') || lower.includes('mindful')) return CATEGORY_IMAGES['Spirituality'];
+  if (lower.includes('tech') || lower.includes('code') || lower.includes('computer')) return CATEGORY_IMAGES['Technology'];
+  if (lower.includes('lifestyle') || lower.includes('daily') || lower.includes('routine')) return CATEGORY_IMAGES['Lifestyle'];
   return [];
 }
 

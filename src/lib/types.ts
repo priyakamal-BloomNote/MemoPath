@@ -127,6 +127,12 @@ export const DEFAULT_CATEGORIES = [
   { name: 'Relationships', color: '#f59e0b', icon: 'Users' },
   { name: 'Finance', color: '#3b82f6', icon: 'DollarSign' },
   { name: 'Health & Wellness', color: '#e85d75', icon: 'Heart' },
+  { name: 'Travel & Adventure', color: '#06b6d4', icon: 'Plane' },
+  { name: 'Hobbies & Creativity', color: '#f43f5e', icon: 'Palette' },
+  { name: 'Family', color: '#ec4899', icon: 'Home' },
+  { name: 'Spirituality', color: '#6366f1', icon: 'Sun' },
+  { name: 'Technology', color: '#0ea5e9', icon: 'Cpu' },
+  { name: 'Lifestyle', color: '#84cc16', icon: 'Coffee' },
 ];
 
 export const PRIORITY_OPTIONS: Priority[] = ['Low', 'Medium', 'High', 'Critical'];

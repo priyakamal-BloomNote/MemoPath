@@ -4,12 +4,9 @@ import { useAuth } from '@/lib/auth';
 import { useToast } from '@/lib/toast';
 import { DarkPageBanner, DarkCard, Button, Input, Badge, EmptyState, Modal } from '@/components/ui';
 import ImagePicker from '@/components/ImagePicker';
-import type { Goal } from '@/lib/types';
+import type { Goal, Category } from '@/lib/types';
 import { formatDateShort } from '@/lib/utils';
 import { Plus, Target, Pencil, Trash2, Calendar, TrendingUp, CheckCircle2 } from 'lucide-react';
-
-const BUCKET_CATEGORIES = ['Career', 'Health', 'Finance', 'Education', 'Relationships', 'Personal Growth'] as const;
-type BucketCategory = typeof BUCKET_CATEGORIES[number];
 
 const heroImage = 'https://images.pexels.com/photos/5184363/pexels-photo-5184363.jpeg?auto=compress&cs=tinysrgb&w=1800';
 
@@ -27,9 +24,10 @@ export default function Goals() {
   const [status, setStatus] = useState<Goal['status']>('not_started');
   const [images, setImages] = useState<string[]>([]);
   const [saving, setSaving] = useState(false);
-  const [filter, setFilter] = useState<BucketCategory | 'All'>('All');
+  const [filter, setFilter] = useState<string>('All');
+  const [categories, setCategories] = useState<Category[]>([]);
 
-  const load = async () => { if (!user) return; const { data, error } = await supabase.from('goals').select('*').eq('user_id', user.id).order('created_at', { ascending: false }); if (error) toast('Could not load goals', 'error'); setItems((data || []) as Goal[]); };
+  const load = async () => { if (!user) return; const [{ data: goalData, error: goalError }, { data: catData }] = await Promise.all([supabase.from('goals').select('*').eq('user_id', user.id).order('created_at', { ascending: false }), supabase.from('categories').select('*').eq('user_id', user.id).order('created_at', { ascending: true })]); if (goalError) toast('Could not load goals', 'error'); setItems((goalData || []) as Goal[]); setCategories((catData || []) as Category[]); };
   useEffect(() => { load(); }, [user]);
 
   const openCreate = () => { setEditing(null); setTitle(''); setDescription(''); setCategory('Personal Growth'); setTargetDate(''); setProgress(0); setStatus('not_started'); setImages([]); setModal(true); };
@@ -76,8 +74,8 @@ export default function Goals() {
 
       <div className="flex flex-wrap gap-2">
         <button onClick={() => setFilter('All')} className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${filter === 'All' ? 'bg-sage-500 text-white' : 'dd-badge-bg dd-border-2 dd-muted dd-hover'}`}>All</button>
-        {BUCKET_CATEGORIES.map((cat) => (
-          <button key={cat} onClick={() => setFilter(cat)} className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${filter === cat ? 'bg-sage-500 text-white' : 'dd-badge-bg dd-border-2 dd-muted dd-hover'}`}>{cat}</button>
+        {categories.map((cat) => (
+          <button key={cat.id} onClick={() => setFilter(cat.name)} className={`rounded-full px-4 py-1.5 text-xs font-semibold transition-all ${filter === cat.name ? 'bg-sage-500 text-white' : 'dd-badge-bg dd-border-2 dd-muted dd-hover'}`}>{cat.name}</button>
         ))}
       </div>
 
@@ -142,7 +140,7 @@ export default function Goals() {
           <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Title</label><Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="What do you want to achieve?" autoFocus /></div>
           <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Description</label><textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Why does this goal matter?" rows={3} className="w-full px-4 py-2.5 rounded-xl bg-sage-50 dark:bg-ink-700 border border-sage-100 dark:border-ink-600 text-sm text-ink-900 dark:text-sage-100 placeholder:text-sage-300 dark:placeholder:text-sage-500 focus:outline-none focus:ring-2 focus:ring-sage-300 dark:focus:ring-sage-600 transition-all resize-none" /></div>
           <div className="grid grid-cols-2 gap-3">
-            <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Category</label><select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-4 py-2.5 rounded-xl bg-sage-50 dark:bg-ink-700 border border-sage-100 dark:border-ink-600 text-sm text-ink-900 dark:text-sage-100 focus:outline-none focus:ring-2 focus:ring-sage-300 dark:focus:ring-sage-600 cursor-pointer"><option>Personal Growth</option><option>Career</option><option>Health</option><option>Finance</option><option>Education</option><option>Relationships</option></select></div>
+            <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Category</label><select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full px-4 py-2.5 rounded-xl bg-sage-50 dark:bg-ink-700 border border-sage-100 dark:border-ink-600 text-sm text-ink-900 dark:text-sage-100 focus:outline-none focus:ring-2 focus:ring-sage-300 dark:focus:ring-sage-600 cursor-pointer">{categories.length > 0 ? categories.map((c) => <option key={c.id} value={c.name}>{c.name}</option>) : <option value="Personal Growth">Personal Growth</option>}</select></div>
             <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Target date</label><Input type="date" value={targetDate} onChange={(e) => setTargetDate(e.target.value)} /></div>
           </div>
           <div><label className="block text-xs font-semibold text-sage-600 dark:text-sage-300 mb-1.5">Progress: {progress}%</label><input type="range" min="0" max="100" value={progress} onChange={(e) => setProgress(Number(e.target.value))} className="w-full accent-sage-500" /></div>
