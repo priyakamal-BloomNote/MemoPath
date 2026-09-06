@@ -50,7 +50,7 @@ export default function ReflectionJournal() {
     setSaving(true);
     const payload = { user_id: user.id, title: title.trim(), content: content.trim(), mood, tags, reflection_date: new Date().toISOString().slice(0, 10) };
     const { error } = editing ? await supabase.from('reflections').update({ title: title.trim(), content: content.trim(), mood, tags }).eq('id', editing.id) : await supabase.from('reflections').insert(payload);
-    if (error) toast(error.message, 'error'); else { toast(editing ? 'Reflection updated' : 'Reflection saved', 'success'); setModal(false); await load(); }
+    if (error) toast(error.message, 'error'); else { toast(editing ? 'Reflection updated' : 'Reflection saved', 'success'); setModal(false); setTags([]); setTagInput(''); await load(); }
     setSaving(false);
   };
 

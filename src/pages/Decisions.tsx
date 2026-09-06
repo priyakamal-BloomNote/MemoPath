@@ -84,7 +84,7 @@ export default function Decisions() {
           ); })}
         </div>
       )}
-      <LogDecisionModal open={modal} onClose={() => setModal(false)} onSaved={load} decision={editing} />
+      <LogDecisionModal key={editing ? editing.id : 'new'} open={modal} onClose={() => setModal(false)} onSaved={load} decision={editing} />
       <DecisionDetailModal open={!!selected} decision={selected} onClose={() => setSelected(null)} onEdit={(d) => { setSelected(null); setEditing(d); setModal(true); }} onChanged={load} />
     </div>
   );
