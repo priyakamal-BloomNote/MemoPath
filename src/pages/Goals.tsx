@@ -6,7 +6,7 @@ import { DarkPageBanner, DarkCard, Button, Input, Badge, EmptyState, Modal } fro
 import ImagePicker from '@/components/ImagePicker';
 import type { Goal } from '@/lib/types';
 import { formatDateShort } from '@/lib/utils';
-import { Plus, Target, Pencil, Trash2, Calendar, TrendingUp } from 'lucide-react';
+import { Plus, Target, Pencil, Trash2, Calendar, TrendingUp, CheckCircle2 } from 'lucide-react';
 
 const BUCKET_CATEGORIES = ['Career', 'Health', 'Finance', 'Education', 'Relationships', 'Personal Growth'] as const;
 type BucketCategory = typeof BUCKET_CATEGORIES[number];
@@ -111,7 +111,8 @@ export default function Goals() {
                   <div className="mt-3 flex items-center gap-2">
                     <button onClick={() => updateProgress(g, g.progress - 10)} className="dd-hover rounded-lg px-2 py-1 text-xs dd-dim">-10%</button>
                     <button onClick={() => updateProgress(g, g.progress + 10)} className="dd-hover rounded-lg px-2 py-1 text-xs dd-accent-bright">+10%</button>
-                    {g.target_date && <span className="ml-auto flex items-center gap-1 text-xs dd-dim"><Calendar className="w-3.5 h-3.5" />{formatDateShort(g.target_date)}</span>}
+                    <button type="button" onClick={() => updateProgress(g, 100)} className="ml-auto inline-flex items-center gap-1.5 rounded-lg bg-sage-500 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-sage-600"><CheckCircle2 className="h-3.5 w-3.5" /> Completed</button>
+                    {g.target_date && <span className="flex items-center gap-1 text-xs dd-dim"><Calendar className="w-3.5 h-3.5" />{formatDateShort(g.target_date)}</span>}
                   </div>
                 </div>
               </DarkCard>
