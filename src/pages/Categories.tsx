@@ -10,26 +10,26 @@ import { Plus, Tag, Trash2, Pencil, Brain, ArrowRight, ImagePlus, X, Upload, Lin
 const COLORS = ['#5f885c', '#3b82f6', '#d97706', '#e11d48', '#7c4dc4', '#10b981', '#f59e0b', '#06b6d4', '#ef4444', '#8b5cf6'];
 
 const CATEGORY_IMAGES: Record<string, string[]> = {
+  Travel: [
+    'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1058959/pexels-photo-1058959.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Adventure: [
+    'https://images.pexels.com/photos/33097708/pexels-photo-33097708.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/32109141/pexels-photo-32109141.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/914128/pexels-photo-914128.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/35871729/pexels-photo-35871729.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/39008292/pexels-photo-39008292.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
   Career: [
     'https://images.pexels.com/photos/4963417/pexels-photo-4963417.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/4173357/pexels-photo-4173357.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/36292200/pexels-photo-36292200.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/36733304/pexels-photo-36733304.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/6533059/pexels-photo-6533059.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  ],
-  Health: [
-    'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/3768919/pexels-photo-3768919.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/8411306/pexels-photo-8411306.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  ],
-  Finance: [
-    'https://images.pexels.com/photos/5900184/pexels-photo-5900184.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/5900156/pexels-photo-5900156.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/5900225/pexels-photo-5900225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/7063762/pexels-photo-7063762.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/4475473/pexels-photo-4475473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
   Education: [
     'https://images.pexels.com/photos/327882/pexels-photo-327882.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -38,33 +38,19 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.pexels.com/photos/3776190/pexels-photo-3776190.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/37860169/pexels-photo-37860169.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
+  'Health & Fitness': [
+    'https://images.pexels.com/photos/3768916/pexels-photo-3768916.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3768919/pexels-photo-3768919.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3823039/pexels-photo-3823039.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/4386466/pexels-photo-4386466.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8411306/pexels-photo-8411306.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
   Relationships: [
     'https://images.pexels.com/photos/5638749/pexels-photo-5638749.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/5638812/pexels-photo-5638812.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/27177288/pexels-photo-27177288.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/5638600/pexels-photo-5638600.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/5638470/pexels-photo-5638470.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  ],
-  'Personal Growth': [
-    'https://images.pexels.com/photos/7752691/pexels-photo-7752691.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/7113365/pexels-photo-7113365.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/6957965/pexels-photo-6957965.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/36730145/pexels-photo-36730145.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/7113592/pexels-photo-7113592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  ],
-  'Travel & Adventure': [
-    'https://images.pexels.com/photos/1271619/pexels-photo-1271619.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/2422259/pexels-photo-2422259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/1058959/pexels-photo-1058959.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/2387873/pexels-photo-2387873.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-  ],
-  'Hobbies & Creativity': [
-    'https://images.pexels.com/photos/1190130/pexels-photo-1190130.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/1190131/pexels-photo-1190131.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/5900165/pexels-photo-5900165.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/6957803/pexels-photo-6957803.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
   Family: [
     'https://images.pexels.com/photos/1648387/pexels-photo-1648387.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -73,19 +59,33 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.pexels.com/photos/2698945/pexels-photo-2698945.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/1648438/pexels-photo-1648438.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
-  Spirituality: [
-    'https://images.pexels.com/photos/8474872/pexels-photo-8474872.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/8474877/pexels-photo-8474877.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/2901209/pexels-photo-2901209.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/2901486/pexels-photo-2901486.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/8474866/pexels-photo-8474866.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  Creativity: [
+    'https://images.pexels.com/photos/1190130/pexels-photo-1190130.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1190131/pexels-photo-1190131.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3781338/pexels-photo-3781338.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5900165/pexels-photo-5900165.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6957803/pexels-photo-6957803.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
-  Technology: [
-    'https://images.pexels.com/photos/7988079/pexels-photo-7988079.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/7988080/pexels-photo-7988080.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/356056/pexels-photo-356056.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/356054/pexels-photo-356054.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
-    'https://images.pexels.com/photos/2693244/pexels-photo-2693244.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  'Personal Growth': [
+    'https://images.pexels.com/photos/7752691/pexels-photo-7752691.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/7113365/pexels-photo-7113365.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6957965/pexels-photo-6957965.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/36730145/pexels-photo-36730145.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/7113592/pexels-photo-7113592.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Finance: [
+    'https://images.pexels.com/photos/5900184/pexels-photo-5900184.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5900156/pexels-photo-5900156.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5900225/pexels-photo-5900225.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/7063762/pexels-photo-7063762.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/4475473/pexels-photo-4475473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Entertainment: [
+    'https://images.pexels.com/photos/1613240/pexels-photo-1613240.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8186275/pexels-photo-8186275.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/1688259/pexels-photo-1688259.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/4065806/pexels-photo-4065806.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/4218027/pexels-photo-4218027.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
   Lifestyle: [
     'https://images.pexels.com/photos/3755586/pexels-photo-3755586.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
@@ -94,24 +94,88 @@ const CATEGORY_IMAGES: Record<string, string[]> = {
     'https://images.pexels.com/photos/3755580/pexels-photo-3755580.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
     'https://images.pexels.com/photos/3755582/pexels-photo-3755582.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
   ],
+  Nature: [
+    'https://images.pexels.com/photos/39370027/pexels-photo-39370027.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/7689028/pexels-photo-7689028.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/9984778/pexels-photo-9984778.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/29719959/pexels-photo-29719959.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/38520172/pexels-photo-38520172.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Wellness: [
+    'https://images.pexels.com/photos/36922916/pexels-photo-36922916.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3921395/pexels-photo-3921395.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6187648/pexels-photo-6187648.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/13041003/pexels-photo-13041003.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/22747345/pexels-photo-22747345.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Experiences: [
+    'https://images.pexels.com/photos/12385495/pexels-photo-12385495.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/16418580/pexels-photo-16418580.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/31663211/pexels-photo-31663211.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5847761/pexels-photo-5847761.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/5350999/pexels-photo-5350999.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Achievements: [
+    'https://images.pexels.com/photos/32711485/pexels-photo-32711485.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6565250/pexels-photo-6565250.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6345332/pexels-photo-6345332.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6370114/pexels-photo-6370114.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6565255/pexels-photo-6565255.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Memories: [
+    'https://images.pexels.com/photos/1717969/pexels-photo-1717969.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/18317485/pexels-photo-18317485.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6274899/pexels-photo-6274899.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8848784/pexels-photo-8848784.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/18317486/pexels-photo-18317486.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Skills: [
+    'https://images.pexels.com/photos/7437731/pexels-photo-7437731.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/33925031/pexels-photo-33925031.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/31800980/pexels-photo-31800980.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/34082714/pexels-photo-34082714.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/33317473/pexels-photo-33317473.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  Dreams: [
+    'https://images.pexels.com/photos/15153677/pexels-photo-15153677.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8185566/pexels-photo-8185566.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/8628941/pexels-photo-8628941.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/30279635/pexels-photo-30279635.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/30279634/pexels-photo-30279634.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
+  'Self-Love': [
+    'https://images.pexels.com/photos/4426554/pexels-photo-4426554.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/17555294/pexels-photo-17555294.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/3852146/pexels-photo-3852146.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/6724411/pexels-photo-6724411.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+    'https://images.pexels.com/photos/19437857/pexels-photo-19437857.jpeg?auto=compress&cs=tinysrgb&h=650&w=940',
+  ],
 };
 
 function getImagesForCategory(name: string, customImages?: string[] | null): string[] {
   if (customImages && customImages.length > 0) return customImages;
   if (CATEGORY_IMAGES[name]) return CATEGORY_IMAGES[name];
   const lower = name.toLowerCase();
-  if (lower.includes('career') || lower.includes('work') || lower.includes('business')) return CATEGORY_IMAGES.Career;
-  if (lower.includes('health') || lower.includes('fitness') || lower.includes('wellness')) return CATEGORY_IMAGES.Health;
-  if (lower.includes('finance') || lower.includes('money') || lower.includes('budget')) return CATEGORY_IMAGES.Finance;
-  if (lower.includes('education') || lower.includes('learn') || lower.includes('study')) return CATEGORY_IMAGES.Education;
-  if (lower.includes('relation') || lower.includes('family') || lower.includes('friend')) return CATEGORY_IMAGES.Relationships;
-  if (lower.includes('growth') || lower.includes('mind') || lower.includes('spirit')) return CATEGORY_IMAGES['Personal Growth'];
-  if (lower.includes('travel') || lower.includes('adventure') || lower.includes('trip')) return CATEGORY_IMAGES['Travel & Adventure'];
-  if (lower.includes('hobby') || lower.includes('creativ') || lower.includes('art') || lower.includes('music')) return CATEGORY_IMAGES['Hobbies & Creativity'];
-  if (lower.includes('family') || lower.includes('home') || lower.includes('kid')) return CATEGORY_IMAGES['Family'];
-  if (lower.includes('spirit') || lower.includes('meditat') || lower.includes('mindful')) return CATEGORY_IMAGES['Spirituality'];
-  if (lower.includes('tech') || lower.includes('code') || lower.includes('computer')) return CATEGORY_IMAGES['Technology'];
-  if (lower.includes('lifestyle') || lower.includes('daily') || lower.includes('routine')) return CATEGORY_IMAGES['Lifestyle'];
+  if (lower.includes('career') || lower.includes('work') || lower.includes('business') || lower.includes('job')) return CATEGORY_IMAGES.Career;
+  if (lower.includes('health') || lower.includes('fitness') || lower.includes('workout') || lower.includes('exercise')) return CATEGORY_IMAGES['Health & Fitness'];
+  if (lower.includes('finance') || lower.includes('money') || lower.includes('budget') || lower.includes('invest')) return CATEGORY_IMAGES.Finance;
+  if (lower.includes('education') || lower.includes('learn') || lower.includes('study') || lower.includes('school')) return CATEGORY_IMAGES.Education;
+  if (lower.includes('relation') || lower.includes('friend') || lower.includes('partner') || lower.includes('love')) return CATEGORY_IMAGES.Relationships;
+  if (lower.includes('growth') || lower.includes('mind') || lower.includes('develop') || lower.includes('improve')) return CATEGORY_IMAGES['Personal Growth'];
+  if (lower.includes('travel') || lower.includes('trip') || lower.includes('journey') || lower.includes('vacation')) return CATEGORY_IMAGES.Travel;
+  if (lower.includes('adventure') || lower.includes('explore') || lower.includes('hike') || lower.includes('climb')) return CATEGORY_IMAGES.Adventure;
+  if (lower.includes('family') || lower.includes('home') || lower.includes('kid') || lower.includes('parent')) return CATEGORY_IMAGES.Family;
+  if (lower.includes('creativ') || lower.includes('art') || lower.includes('music') || lower.includes('craft') || lower.includes('paint')) return CATEGORY_IMAGES.Creativity;
+  if (lower.includes('entertain') || lower.includes('movie') || lower.includes('concert') || lower.includes('show') || lower.includes('game')) return CATEGORY_IMAGES.Entertainment;
+  if (lower.includes('lifestyle') || lower.includes('daily') || lower.includes('routine') || lower.includes('living')) return CATEGORY_IMAGES.Lifestyle;
+  if (lower.includes('nature') || lower.includes('outdoor') || lower.includes('forest') || lower.includes('garden')) return CATEGORY_IMAGES.Nature;
+  if (lower.includes('wellness') || lower.includes('meditat') || lower.includes('mindful') || lower.includes('spa') || lower.includes('relax')) return CATEGORY_IMAGES.Wellness;
+  if (lower.includes('experience') || lower.includes('event') || lower.includes('explore')) return CATEGORY_IMAGES.Experiences;
+  if (lower.includes('achieve') || lower.includes('award') || lower.includes('win') || lower.includes('success') || lower.includes('trophy')) return CATEGORY_IMAGES.Achievements;
+  if (lower.includes('memor') || lower.includes('photo') || lower.includes('album') || lower.includes('nostalg')) return CATEGORY_IMAGES.Memories;
+  if (lower.includes('skill') || lower.includes('practice') || lower.includes('workshop') || lower.includes('train')) return CATEGORY_IMAGES.Skills;
+  if (lower.includes('dream') || lower.includes('goal') || lower.includes('aspire') || lower.includes('star')) return CATEGORY_IMAGES.Dreams;
+  if (lower.includes('self') || lower.includes('care') || lower.includes('pamper') || lower.includes('love')) return CATEGORY_IMAGES['Self-Love'];
   return [];
 }
 

@@ -121,18 +121,26 @@ export interface AppNotification {
 }
 
 export const DEFAULT_CATEGORIES = [
-  { name: 'Personal Growth', color: '#8b5cf6', icon: 'Sparkles' },
+  { name: 'Travel', color: '#06b6d4', icon: 'Plane' },
+  { name: 'Adventure', color: '#0ea5e9', icon: 'Compass' },
   { name: 'Career', color: '#7c4dc4', icon: 'Briefcase' },
   { name: 'Education', color: '#10b981', icon: 'GraduationCap' },
+  { name: 'Health & Fitness', color: '#e85d75', icon: 'Heart' },
   { name: 'Relationships', color: '#f59e0b', icon: 'Users' },
-  { name: 'Finance', color: '#3b82f6', icon: 'DollarSign' },
-  { name: 'Health & Wellness', color: '#e85d75', icon: 'Heart' },
-  { name: 'Travel & Adventure', color: '#06b6d4', icon: 'Plane' },
-  { name: 'Hobbies & Creativity', color: '#f43f5e', icon: 'Palette' },
   { name: 'Family', color: '#ec4899', icon: 'Home' },
-  { name: 'Spirituality', color: '#6366f1', icon: 'Sun' },
-  { name: 'Technology', color: '#0ea5e9', icon: 'Cpu' },
+  { name: 'Creativity', color: '#f43f5e', icon: 'Palette' },
+  { name: 'Personal Growth', color: '#8b5cf6', icon: 'Sparkles' },
+  { name: 'Finance', color: '#3b82f6', icon: 'DollarSign' },
+  { name: 'Entertainment', color: '#a855f7', icon: 'Music' },
   { name: 'Lifestyle', color: '#84cc16', icon: 'Coffee' },
+  { name: 'Nature', color: '#22c55e', icon: 'Trees' },
+  { name: 'Wellness', color: '#14b8a6', icon: 'Flower' },
+  { name: 'Experiences', color: '#f97316', icon: 'Sparkle' },
+  { name: 'Achievements', color: '#eab308', icon: 'Trophy' },
+  { name: 'Memories', color: '#d946ef', icon: 'Camera' },
+  { name: 'Skills', color: '#6366f1', icon: 'Wrench' },
+  { name: 'Dreams', color: '#8b5cf6', icon: 'Star' },
+  { name: 'Self-Love', color: '#fb7185', icon: 'HeartHandshake' },
 ];
 
 export const PRIORITY_OPTIONS: Priority[] = ['Low', 'Medium', 'High', 'Critical'];
