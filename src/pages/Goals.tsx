@@ -123,10 +123,10 @@ export default function Goals() {
               <h3 className="font-display text-sm font-semibold dd-amber pt-2">Completed</h3>
               <div className="grid gap-3 md:grid-cols-2">
                 {completed.map((g) => (
-                  <DarkCard key={g.id} className="p-5 opacity-75">
+                  <DarkCard key={g.id} className="p-5 opacity-75" onClick={() => openEdit(g)}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0 flex-1"><div className="mb-2 flex items-center gap-2"><Badge className="dd-badge-bg dd-badge-border dd-amber">Completed</Badge><span className="text-xs dd-dim">{g.category}</span></div><h3 className="font-display text-base font-bold dd-text">{g.title}</h3></div>
-                      <button onClick={() => handleDelete(g.id)} className="rounded-lg p-2 text-rose-400 hover:bg-rose-500/15"><Trash2 className="w-4 h-4" /></button>
+                      <button onClick={(e) => { e.stopPropagation(); handleDelete(g.id); }} className="rounded-lg p-2 text-rose-400 hover:bg-rose-500/15"><Trash2 className="w-4 h-4" /></button>
                     </div>
                     <div className="mt-3 flex items-center gap-2"><TrendingUp className="w-4 h-4 dd-accent-bright" /><span className="text-xs dd-muted">Completed at 100%</span></div>
                   </DarkCard>
