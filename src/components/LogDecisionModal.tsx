@@ -4,8 +4,8 @@ import { useToast } from '@/lib/toast';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
 import ImagePicker from '@/components/ImagePicker';
-import { PRIORITY_OPTIONS, STATUS_OPTIONS, MOOD_OPTIONS, type Decision, type Priority, type DecisionStatus, type Category, type Mood } from '@/lib/types';
-import { Plus, X, BookOpen, CalendarDays, FolderOpen, Tag, Paperclip, ImagePlus, Save, Sparkles, MoreHorizontal, Bookmark } from 'lucide-react';
+import { PRIORITY_OPTIONS, STATUS_OPTIONS, MOOD_OPTIONS, DIARY_FONTS, type Decision, type Priority, type DecisionStatus, type Category, type Mood } from '@/lib/types';
+import { Plus, X, BookOpen, CalendarDays, FolderOpen, Tag, Paperclip, ImagePlus, Save, Sparkles, MoreHorizontal, Bookmark, PenLine } from 'lucide-react';
 
 const MOMENT_ARTWORKS = [
   '/images/image.png',
@@ -35,6 +35,7 @@ export default function LogDecisionModal({ open, onClose, onSaved, decision }: {
   const [tagInput, setTagInput] = useState('');
   const [images, setImages] = useState<string[]>([]);
   const [showDetails, setShowDetails] = useState(false);
+  const [handwriting, setHandwriting] = useState(DIARY_FONTS[0].name);
   const [artwork, setArtwork] = useState(MOMENT_ARTWORKS[0]);
 
   useEffect(() => {
@@ -50,13 +51,14 @@ export default function LogDecisionModal({ open, onClose, onSaved, decision }: {
       setDecisionDate(decision.decision_date);
       setReviewDate(decision.review_date || '');
       setStatus(decision.status);
+      setHandwriting(DIARY_FONTS[0].name);
       setTags(decision.tags || []);
       setImages(decision.images || []);
       setShowDetails(true);
     } else {
       setTitle(''); setCategory('General'); setDescription(''); setReason(''); setExpectedOutcome('');
       setConfidence(5); setPriority('Medium'); setMood(''); setDecisionDate(new Date().toISOString().slice(0, 10));
-      setReviewDate(''); setStatus('Upcoming'); setTags([]); setImages([]); setShowDetails(false);
+      setReviewDate(''); setStatus('Upcoming'); setHandwriting(DIARY_FONTS[0].name); setTags([]); setImages([]); setShowDetails(false);
       setArtwork((current) => {
         const currentIndex = MOMENT_ARTWORKS.indexOf(current);
         return MOMENT_ARTWORKS[(currentIndex + 1) % MOMENT_ARTWORKS.length];
@@ -124,12 +126,13 @@ export default function LogDecisionModal({ open, onClose, onSaved, decision }: {
             <p className="diary-time">{new Date(`${decisionDate}T12:00:00`).toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' })}</p><div className="diary-rule" />
             <div className="diary-field"><div className="diary-label"><Sparkles className="h-4 w-4" /> Mood</div><Select value={mood} onChange={(e) => setMood(e.target.value)} className="diary-control"><option value="">Select a mood</option>{MOOD_OPTIONS.map((m) => <option key={m.value} value={m.value}>{m.emoji} {m.label}</option>)}</Select></div>
             <div className="diary-field"><div className="diary-label"><FolderOpen className="h-4 w-4" /> Chapter / category</div><Select value={category} onChange={(e) => setCategory(e.target.value)} className="diary-control">{categories.length > 0 ? categories.map((c) => <option key={c.name} value={c.name}>{c.name}</option>) : <option value="General">General</option>}</Select></div>
+            <div className="diary-field"><div className="diary-label"><PenLine className="h-4 w-4" /> Handwriting</div><Select value={handwriting} onChange={(e) => setHandwriting(e.target.value)} className="diary-control">{DIARY_FONTS.map((font) => <option key={font.name} value={font.name}>{font.name}</option>)}</Select></div>
             <div className="diary-field"><div className="diary-label"><Tag className="h-4 w-4" /> Tags</div><div className="diary-tags">{tags.map((t) => <Badge key={t} className="diary-tag">{t}<button type="button" onClick={() => setTags(tags.filter((x) => x !== t))} aria-label={`Remove ${t}`}><X className="h-3 w-3" /></button></Badge>)}<Input value={tagInput} onChange={(e) => setTagInput(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && (e.preventDefault(), addTag())} placeholder="+ Add tag" className="diary-tag-input" /><Button type="button" variant="ghost" onClick={addTag} className="diary-add-tag"><Plus className="h-4 w-4" /></Button></div></div>
             <div className="diary-field"><div className="diary-label"><Paperclip className="h-4 w-4" /> Add to this moment</div><div className="diary-media"><span><ImagePlus className="h-4 w-4" /> Photo</span></div><div className="mt-2"><ImagePicker images={images} onChange={setImages} folderId={decision ? decision.id : 'draft'} label="" /></div></div>
             <button type="button" onClick={() => setShowDetails((value) => !value)} className="diary-details">{showDetails ? 'Hide details' : 'Add details'} <span>{showDetails ? '−' : '+'}</span></button>
             {showDetails && <div className="diary-extra"><Select value={priority} onChange={(e) => setPriority(e.target.value as Priority)} className="diary-control">{PRIORITY_OPTIONS.map((p) => <option key={p} value={p}>{p}</option>)}</Select><Textarea value={reason} onChange={(e) => setReason(e.target.value)} placeholder="What were you thinking or feeling?" rows={2} className="diary-writing-control" /><Textarea value={expectedOutcome} onChange={(e) => setExpectedOutcome(e.target.value)} placeholder="What do you expect to happen?" rows={2} className="diary-writing-control" /><label className="diary-confidence">Confidence {confidence}/10<input type="range" min={1} max={10} value={confidence} onChange={(e) => setConfidence(Number(e.target.value))} /></label><Select value={status} onChange={(e) => setStatus(e.target.value as DecisionStatus)} className="diary-control">{STATUS_OPTIONS.map((s) => <option key={s} value={s}>{s}</option>)}</Select><Input type="date" value={reviewDate} onChange={(e) => setReviewDate(e.target.value)} className="diary-date" /></div>}
           </section>
-          <section className="diary-page diary-right"><div className="diary-bookmark" aria-hidden="true"><Bookmark className="diary-bookmark-ribbon" /><span>MEMO</span></div><div className="diary-stars" aria-hidden="true">✦ &nbsp; ☾</div><Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="A new moment..." className="diary-title" autoFocus /><div className="diary-underline" /><Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Write about what happened, what stood out, or what you want to remember..." rows={12} className="diary-writing" /><img src={artwork} alt="" className="diary-realistic-art" /><div className="diary-footer"><Button variant="ghost" onClick={onClose}>Cancel</Button><Button onClick={handleSave} loading={saving} className="diary-save"><Save className="h-4 w-4" /> {decision ? 'Update Moment' : 'Save Moment'}</Button></div></section>
+          <section className="diary-page diary-right"><div className="diary-bookmark" aria-hidden="true"><Bookmark className="diary-bookmark-ribbon" /><span>MEMO</span></div><div className="diary-stars" aria-hidden="true">✦ &nbsp; ☾</div><Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="A new moment..." className="diary-title" style={{ fontFamily: `'${handwriting}', Georgia, serif` }} autoFocus /><div className="diary-underline" /><Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Write about what happened, what stood out, or what you want to remember..." rows={12} className="diary-writing" style={{ fontFamily: `'${handwriting}', Georgia, serif` }} /><img src={artwork} alt="" className="diary-realistic-art" /><div className="diary-footer"><Button variant="ghost" onClick={onClose}>Cancel</Button><Button onClick={handleSave} loading={saving} className="diary-save"><Save className="h-4 w-4" /> {decision ? 'Update Moment' : 'Save Moment'}</Button></div></section>
         </div>
       </div>
     </Modal>
